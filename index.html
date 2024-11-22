@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div>
+        <button id="addTaskBtn">Add Task</button>
+        <button id="deleteTaskBtn">Delete Task</button>
+        <input type="text" id="taskInput" placeholder="Enter task">
+        <ul id="taskList"></ul>
+    </div>
+    <script>
+      // Step 1: Create an empty array to store tasks
+let tasks = [];
+
+// Step 2: Add event listener for Add Task button
+document.getElementById('addTaskBtn').addEventListener('click', function() {
+    // Step 3: Get the task from the input field
+    let task = document.getElementById('taskInput').value;
+    
+    // Step 4: If task is not empty, add it to the tasks array using .push()
+    if(task !== "") {
+        tasks.push(task);  // Add the task to the array
+        displayTasks();    // Update the task list display
+        document.getElementById('taskInput').value = "";  // Clear the input field
+    } else {
+        alert("Please enter a task!");  // Show alert if input is empty
+    }
+});
+
+// Step 5: Add event listener for Delete Task button
+document.getElementById('deleteTaskBtn').addEventListener('click', function() {
+    // Step 6: Remove the last task from the array
+    if (tasks.length > 0) {
+        tasks.pop();  // Remove the last task using .pop()
+        displayTasks();  // Update the task list display
+    } else {
+        alert("No tasks to delete!");  // Alert if there are no tasks
+    }
+});
+
+// Step 7: Function to display tasks in the UI
+function displayTasks() {
+    let taskList = document.getElementById('taskList');  // Get the UL element
+    taskList.innerHTML = "";  // Clear the current list
+    
+    // Step 8: Loop through tasks array and create a list item for each task
+    for(let i = 0; i < tasks.length; i++) {
+        let li = document.createElement('li');  // Create a list item
+        li.textContent = tasks[i];  // Set the text of the list item to the task
+        taskList.appendChild(li);  // Append the list item to the UL
+    }
+}
+
+
+    </script>
+</body>
+</html>
